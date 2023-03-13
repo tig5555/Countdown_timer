@@ -1,0 +1,69 @@
+#Create a countdown timer
+import time
+
+# Definition of the countdown function
+def countdown_timer(total_time):
+    # Ask the user if he/she wants to start countdown
+    while True:
+        start = input('Please, press "Enter" to start countdown or "q" to quit: ')
+        if start.lower() == "q":
+            break
+        elif start.lower() != "" \
+                            "":
+            print('Invalid input. Please, press "Enter" to start countdown or "q" to quit')
+            continue
+        while total_time:
+            mins, secs = divmod(total_time, 60)
+            hours, mins = divmod(mins, 60)
+            time_left = '{:02d}:{:02d}:{:02d}'.format(hours, mins, secs)
+            print(time_left, end='\n')
+            time.sleep(1)
+            total_time -= 1
+
+        print('Time is up!')
+        break
+
+while True:
+    # Ask the user if he/she wants to set a countdown timer
+    set_timer = input("Do you want to set a countdown timer? (y/n): ")
+    if set_timer.lower() != "y":
+        break
+    elif set_timer.lower() == "y":
+
+        while True:
+            try:
+                inp = int(input('Input number of hours (integers between 0 and 23): '))
+                if inp >= 0 and inp <= 23:
+                    break
+                else:
+                    print('Please enter n ∈ [0; 23]!')
+            except ValueError:
+                print('Please enter number')
+        while True:
+            try:
+                inp1 = int(input('Input number of minutes (integers between 0 and 59): '))
+                if inp1 >= 0 and inp1 <= 59:
+                    break
+                else:
+                    print('Please enter n ∈ [0; 59]!')
+            except ValueError:
+                print('Please enter number')
+        while True:
+            try:
+                inp2 = int(input('Input number of seconds (integers between 0 and 59): '))
+                if inp2 >= 0 and inp2 <= 59:
+                    break
+                else:
+                    print('Please enter n ∈ [0; 59]!')
+            except ValueError:
+                print('Please enter number')
+
+        inp11 = (inp * 3600)
+        inp22 = (inp1 * 60)
+
+        inp3 = (inp11 + inp22 + inp2)
+
+        total_time = int(inp3)
+
+    # Start the timer function
+    countdown_timer(total_time)
